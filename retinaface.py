@@ -58,7 +58,7 @@ class Retinaface(object):
         #-----------------------------------#
         "letterbox_image"       : True,
         
-        "facenet_model_path"    : 'facenet_inception_resnetv1.pth',
+        "facenet_model_path"    : 'model_data/facenet_mobilenet.pth',
         #-----------------------------------#
         #   可选facenet_backbone有
         #   mobilenet和inception_resnetv1
