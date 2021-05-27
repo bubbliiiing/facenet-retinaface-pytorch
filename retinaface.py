@@ -63,7 +63,7 @@ class Retinaface(object):
         #   可选facenet_backbone有
         #   mobilenet和inception_resnetv1
         #-----------------------------------#
-        "facenet_backbone"      : "inception_resnetv1",
+        "facenet_backbone"      : "mobilenet",
         "facenet_input_shape"   : [160,160,3],
         "facenet_threhold"      : 0.9,
 
