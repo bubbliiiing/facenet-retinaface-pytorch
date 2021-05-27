@@ -1,4 +1,4 @@
-## Facenet+Retinaface：人脸识别模型在Keras当中的实现
+## Facenet+Retinaface：人脸识别模型在Pytorch当中的实现
 ---
 
 ## 目录
