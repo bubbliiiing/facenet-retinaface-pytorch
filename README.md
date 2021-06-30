@@ -62,7 +62,7 @@ _defaults = {
 ```python
 img/zhangxueyou.jpg
 ```  
-5. 利用video.py可进行摄像头检测。  
+5. 在predict.py里面进行设置可以进行fps测试和video视频检测。  
 
 
 ## Reference
