@@ -9,8 +9,10 @@
 5. [参考资料 Reference](#Reference)
 
 ## 注意事项
-该库中包含了两个网络，分别是retinaface和facenet。二者使用不同的权值。
-在使用网络时一定要注意权值的选择，以及主干与权值的匹配。
+该库中包含了两个网络，分别是retinaface和facenet。二者使用不同的权值。    
+在使用网络时一定要注意权值的选择，以及主干与权值的匹配。   
+retinaface人脸检测仓库为，可以训练也可以预测：https://github.com/bubbliiiing/retinaface-pytorch     
+facenet人脸识别仓库为，可以训练也可以预测：https://github.com/bubbliiiing/facenet-pytorch       
 
 ## 所需环境
 pytorch==1.2.0 
