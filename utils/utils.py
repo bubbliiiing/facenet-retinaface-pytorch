@@ -4,42 +4,24 @@ import cv2
 import numpy as np
 from PIL import Image
 
-
+#---------------------------------------------------#
+#   对输入图像进行resize
+#---------------------------------------------------#
 def letterbox_image(image, size):
-    ih, iw, _ = np.shape(image)
-    w, h = size
-    scale = min(w/iw, h/ih)
-    nw = int(iw*scale)
-    nh = int(ih*scale)
+    ih, iw, _   = np.shape(image)
+    w, h        = size
+    scale       = min(w/iw, h/ih)
+    nw          = int(iw*scale)
+    nh          = int(ih*scale)
 
-    image = cv2.resize(image, (nw,nh), Image.BICUBIC)
-    new_image = np.ones([size[1],size[0],3])*128
+    image       = cv2.resize(image, (nw, nh))
+    new_image   = np.ones([size[1], size[0], 3]) * 128
     new_image[(h-nh)//2:nh+(h-nh)//2, (w-nw)//2:nw+(w-nw)//2] = image
     return new_image
-
-def retinaface_correct_boxes(result, input_shape, image_shape):
-
-    # 它的作用是将归一化后的框坐标转换成原图的大小
-    scale_for_offset_for_boxs = np.array([image_shape[1], image_shape[0], image_shape[1], image_shape[0]])
-    scale_for_landmarks_offset_for_landmarks = np.array([image_shape[1], image_shape[0], image_shape[1], image_shape[0],
-                                    image_shape[1], image_shape[0], image_shape[1], image_shape[0],
-                                    image_shape[1], image_shape[0]])
-
-    new_shape = image_shape*np.min(input_shape/image_shape)
-
-    offset = (input_shape-new_shape)/2./input_shape
-    scale = input_shape/new_shape
     
-    scale_for_boxs = [scale[1], scale[0], scale[1], scale[0]]
-    scale_for_landmarks = [scale[1], scale[0], scale[1], scale[0], scale[1], scale[0], scale[1], scale[0], scale[1], scale[0]]
-
-    offset_for_boxs = np.array([offset[1], offset[0], offset[1],offset[0]])*scale_for_offset_for_boxs
-    offset_for_landmarks = np.array([offset[1], offset[0], offset[1], offset[0], offset[1], offset[0], offset[1], offset[0], offset[1], offset[0]])*scale_for_landmarks_offset_for_landmarks
-
-    result[:,:4] = (result[:,:4] - np.array(offset_for_boxs)) * np.array(scale_for_boxs)
-    result[:,5:] = (result[:,5:] - np.array(offset_for_landmarks)) * np.array(scale_for_landmarks)
-
-    return result
+def preprocess_input(image):
+    image -= np.array((104, 117, 123),np.float32)
+    return image
 
 #---------------------------------#
 #   计算人脸距离
